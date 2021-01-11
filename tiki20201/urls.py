@@ -26,7 +26,7 @@ urlpatterns = [
     path('seller/',views.ListAllSellerView.as_view()),
     path('seller/<str:pk>', views.ListCreateSellerView.as_view()),
     path('seller/get/<str:pk>', views.UpdateDeleteSellerView.as_view()),
-    path('homepage/<str:pk>',views.ListAllProductView.as_view()),
+    path('homepage/',views.ListAllProductView.as_view()),
     path('product/<str:pk>',views.ListCreateProductView.as_view()),
     path('product/get/<str:pk>',views.UpdateDeleteProductView.as_view()),
 ]
