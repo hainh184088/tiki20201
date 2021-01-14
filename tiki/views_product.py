@@ -6,17 +6,14 @@ from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import RetrieveModelMixin
 
-from tiki.models import Category, Seller, Product
-from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer
+from tiki.models import Category, Seller, Product, Sell, Image
+from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer, SellSerializer
 
 class ListAllProductView(ListCreateAPIView):
     model = Product
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        # category = Category.objects.get(pk=self.kwargs.get('pk', None))
-        # product = Product.objects.filter(category=category)
-        # return product
         return Product.objects.all()
 
 class ListCreateProductView(RetrieveModelMixin, ListCreateAPIView):

@@ -36,8 +36,8 @@ class Product(models.Model):
         db_table = 'product'
 
 class Sell(models.Model):
-    p_id = models.OneToOneField(Product,on_delete = models.CASCADE, primary_key = True)
-    seller_id = models.OneToOneField(Category,on_delete = models.CASCADE)
+    p = models.OneToOneField(Product,on_delete = models.CASCADE, primary_key = True, related_name = 'sell_product')
+    seller = models.OneToOneField(Category,on_delete = models.CASCADE)
     min_qty = models.IntegerField()
     max_qty = models.IntegerField()
     qty = models.IntegerField()

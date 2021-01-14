@@ -20,13 +20,13 @@ from tiki import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('tikiapi.urls')),
-    path('category/',views.ListAllCategoryView.as_view()),
-    path('category/<str:pk>', views.ListCreateCategoryView.as_view()),
-    path('category/get/<str:pk>', views.UpdateDeleteCategoryView.as_view()),
+    # path('category/',views.ListAllCategoryView.as_view()),
+    # path('category/<str:pk>', views.ListCreateCategoryView.as_view()),
+    # path('category/get/<str:pk>', views.UpdateDeleteCategoryView.as_view()),
     path('seller/',views.ListAllSellerView.as_view()),
     path('seller/<str:pk>', views.ListCreateSellerView.as_view()),
     path('seller/get/<str:pk>', views.UpdateDeleteSellerView.as_view()),
-    path('homepage/',views.ListAllProductView.as_view()),
+    path('homepage/',views.ListAllCategoryView.as_view()),
     path('product/<str:pk>',views.ListCreateProductView.as_view()),
     path('product/get/<str:pk>',views.UpdateDeleteProductView.as_view()),
 ]

@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'tiki20201.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'end_term2',
+        'NAME': 'end_term',
         'USER': 'root',
         'PASSWORD': 'plantsynchro123',
         'HOST':'127.0.0.1',

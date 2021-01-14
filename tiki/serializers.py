@@ -1,25 +1,25 @@
 from rest_framework import serializers
 from tiki.models import Category, Seller, Sell, Image, Product
+class ProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = "__all__"
+
 class CategorySerializer(serializers.ModelSerializer):
-    
+    product = ProductSerializer(many = True, read_only = True)
     class Meta: 
         model = Category
-        fields = "__all__"
+        fields = ['idCategory','name', 'product']
 class SellerSerializer(serializers.ModelSerializer):
     
     class Meta: 
         model = Seller
         fields = "__all__"
 
-class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only = True)
-    class Meta:
-        model = Product
-        fields = "__all__"
-        
 class SellSerializer(serializers.ModelSerializer):
-    p_id = ProductSerializer(read_only = True)
-    seller_id = CategorySerializer(read_only = True)
+    # p = ProductSerializer(many = True, required = True)
+    # seller = CategorySerializer(required = True)
     class Meta:
         model = Sell
-        field = "__all__"
+        fields = "__all__"
