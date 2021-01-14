@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'kp-d!_kaa*_3@f@q@k7mvf=jysb1zfop3i(_9moo&n+@h=p+@w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'tiki20201.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'end_term',
-        'USER': 'root',
-        'PASSWORD': 'plantsynchro123',
-        'HOST':'127.0.0.1',
-        'PORT':'3306'
+        # 'NAME': 'end_term',
+        # 'USER': 'root',
+        # 'PASSWORD': 'plantsynchro123',
+        # 'HOST':'127.0.0.1',
+        # 'PORT':'3306'
     }
 }
 
@@ -124,3 +124,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# Allow all host hosts/domain names for this site
+ALLOWED_HOSTS = ['*']
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+
+DATABASES = { 'default' : dj_database_url.config()}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# try to load local_settings.py if it exists
+try:
+  from local_settings import *
+except Exception as e:
+  pass
+
