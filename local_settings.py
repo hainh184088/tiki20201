@@ -7,6 +7,9 @@ TEMPLATE_DEBUG = True
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
+        'OPTIONS' : {
+            'options': '-c search_path=end_term,public'
+        },
         "NAME": "end_term",
         "USER": "postgres",
         "PASSWORD": "postgres",
