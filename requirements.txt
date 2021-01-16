@@ -11,7 +11,6 @@ inflection==0.5.1
 protobuf==3.14.0
 psycopg2==2.8.6
 psycopg2-binary==2.8.6
-py-mysql2pgsql==0.1.5
 pytz==2020.5
 PyYAML==5.3.1
 six==1.15.0
