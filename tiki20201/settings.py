@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,6 +49,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tiki20201.urls'
@@ -77,12 +80,13 @@ WSGI_APPLICATION = 'tiki20201.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'end_term',
-        'USER': 'root',
-        'PASSWORD': 'plantsynchro123',
-        'HOST':'127.0.0.1',
-        'PORT':'3306'
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'end_term',
+        # 'USER': 'root',
+        # 'PASSWORD': 'plantsynchro123',
+        # 'HOST':'127.0.0.1',
+        # 'PORT':'3306'
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
     }
 }
 
@@ -124,26 +128,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
 
 # # Parse database configuration from $DATABASE_URL
-# import dj_database_url
+import dj_database_url
 
-# DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = { 'default' : dj_database_url.config()}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # try to load local_settings.py if it exists
-try:
-  from local_settings import *
-except Exception as e:
-  pass
-import os
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-STATIC_URL = '/static/'
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# try:
+#   from local_settings import *
+# except Exception as e:
+#   pass
+# import os
+from local_settings import *
+# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+django_heroku.settings(locals())
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

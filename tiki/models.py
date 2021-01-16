@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.postgres.fields import JSONField
 # Create your models here.
 class Category(models.Model):
     idCategory = models.CharField(max_length = 10, primary_key = True)
