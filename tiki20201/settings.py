@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'kp-d!_kaa*_3@f@q@k7mvf=jysb1zfop3i(_9moo&n+@h=p+@w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -85,8 +85,16 @@ DATABASES = {
         # 'USER': 'root',
         # 'PASSWORD': 'plantsynchro123',
         # 'HOST':'127.0.0.1',
-        # 'PORT':'3306'
+        # 'PORT':'3306',
         "ENGINE": "django.db.backends.postgresql_psycopg2",
+        'OPTIONS' : {
+            'options': '-c search_path=end_term,public'
+        },
+        "NAME": "end_term",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "127.0.0.1",
+        "PORT": "5432"
     }
 }
 
@@ -133,18 +141,18 @@ STATIC_URL = '/static/'
 ALLOWED_HOSTS = ['*']
 
 # # Parse database configuration from $DATABASE_URL
-import dj_database_url
+# import dj_database_url
 
-DATABASES = { 'default' : dj_database_url.config()}
+# DATABASES = { 'default' : dj_database_url.config()}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # try to load local_settings.py if it exists
-try:
-  from local_settings import *
-except Exception as e:
-  pass
+# try:
+#   from local_settings import *
+# except Exception as e:
+#   pass
 # import os
 # PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

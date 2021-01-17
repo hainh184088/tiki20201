@@ -9,12 +9,12 @@ from rest_framework.mixins import RetrieveModelMixin
 from tiki.models import Category, Seller, Product, Sell, Image
 from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer, SellSerializer
 
-class ListAllProductView(ListCreateAPIView):
-    model = Product
-    serializer_class = ProductSerializer
+# class ListAllProductView(ListCreateAPIView):
+#     model = Product
+#     serializer_class = ProductSerializer
 
-    def get_queryset(self):
-        return Product.objects.all()
+#     def get_queryset(self):
+#         return Product.objects.all()
 
 class ListCreateProductView(RetrieveModelMixin, ListCreateAPIView):
     model = Product

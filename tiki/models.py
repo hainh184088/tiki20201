@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 # Create your models here.
 class Category(models.Model):
-    idCategory = models.CharField(max_length = 10, primary_key = True)
+    id_category = models.CharField(max_length = 10, primary_key = True)
     name = models.CharField(max_length = 40)
     class Meta: 
         managed = False
@@ -21,7 +21,7 @@ class Product(models.Model):
     name = models.CharField(max_length = 200)
     url_path = models.CharField(max_length = 200)
     productset_group_name = models.CharField(max_length = 200)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE,  related_name='product')
+    category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name='product')
     # min_qty = models.IntegerField()
     # max_qty = models.IntegerField()
     # quantity = models.IntegerField()
