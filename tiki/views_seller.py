@@ -7,7 +7,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.mixins import RetrieveModelMixin
 
 from tiki.models import Category, Seller, Product
-from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer
+from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer, CategoryProductSerializer
 
 class ListAllSellerView(ListCreateAPIView):
     model = Seller

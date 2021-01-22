@@ -5,12 +5,17 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = "__all__"
-
-class CategorySerializer(serializers.ModelSerializer):
-    product = ProductSerializer(many = True, read_only = True)
+class CategoryProductSerializer(serializers.ModelSerializer):
+    product_set = ProductSerializer(many = True, read_only = True)
     class Meta: 
         model = Category
-        fields = ['id_category','name', 'product']
+        fields = ['id_category','name', 'product_set']
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
 class SellerSerializer(serializers.ModelSerializer):
     
     class Meta: 
