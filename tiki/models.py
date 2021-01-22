@@ -10,10 +10,6 @@ class Category(models.Model):
     class Meta: 
         managed = False
         db_table = 'category'
-    
-
-
-
 
 class Seller(models.Model):
     shop_id = models.CharField(max_length = 10, primary_key = True)
@@ -47,8 +43,8 @@ class Product(models.Model):
 
 
 class Sell(models.Model):
-    p = models.OneToOneField(Product,on_delete = models.CASCADE, primary_key = True)
-    seller = models.OneToOneField(Category,on_delete = models.CASCADE)
+    p = models.ForeignKey(Product,on_delete = models.CASCADE, primary_key = True)
+    seller = models.ForeignKey(Category,on_delete = models.CASCADE)
     min_qty = models.IntegerField()
     max_qty = models.IntegerField()
     qty = models.IntegerField()
@@ -57,20 +53,20 @@ class Sell(models.Model):
         db_table = 'sell'
 
 class Image(models.Model):
-    product_id = models.OneToOneField(Product,on_delete = models.CASCADE)
+    product_id = models.ForeignKey(Product,on_delete = models.CASCADE)
     url = models.CharField(max_length = 255, primary_key = True)
     class Meta:
         managed = False
         db_table = 'image'
 
-# class User(models.Model):
-#     userid = models.CharField(max_length = 10, primary_key = True)
-#     username = models.CharField(max_length = 50)
-#     password = models.CharField(max_length = 50)
-#     user_real_name = models.CharField(max_length = 50)
-#     user_avatar_url = models.CharField(max_length = 200)
-#     balance = models.IntegerField()
+class User(models.Model):
+    userid = models.CharField(max_length = 10, primary_key = True)
+    username = models.CharField(max_length = 50)
+    password = models.CharField(max_length = 50)
+    user_real_name = models.CharField(max_length = 50)
+    user_avatar_url = models.CharField(max_length = 200)
+    balance = models.IntegerField()
 
-#     class Meta:
-#         managed = False
-#         db_table = 'user'
+    class Meta:
+        managed = False
+        db_table = 'user'

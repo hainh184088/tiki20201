@@ -33,4 +33,6 @@ urlpatterns = [
     path('homepage/',views.ListAllCategoryProductView.as_view()),
     path('product/<str:pk>',views.ListCreateProductView.as_view()),
     path('product/get/<str:pk>',views.UpdateDeleteProductView.as_view()),
+    path('user/register/<str:pk>',views.ListCreateUserView.as_view()),
+    
 ]

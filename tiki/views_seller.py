@@ -3,19 +3,24 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
+from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import RetrieveModelMixin
-
-from tiki.models import Category, Seller, Product
-from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer, CategoryProductSerializer
+from django.db import connection
+from tiki.models import Category, Seller, Product, Sell, Image, User
+from tiki.serializers import CategorySerializer, SellerSerializer, ProductSerializer, SellSerializer, CategoryProductSerializer, UserSerializer
 
 class ListAllSellerView(ListCreateAPIView):
     model = Seller
     serializer_class = SellerSerializer
-
+    # def get(self, request, *args, **kwargs):
+    #     with connection.cursor() as cursor:
+    #         cursor = connection.cursor()
+    #         cursor.execute('''SELECT * FROM end_term.seller, end_term.sell, end_term.product where end_term.seller.shop_id = end_term.sell.seller_id and end_term.sell.p_id = end_term.product.id''')
+    #         row = cursor.fetchall()
+    #         return JsonResponse(row, safe = False)
     def get_queryset(self):
-        return Seller.objects.all()
-
+        return Seller.objects.filter()
 class ListCreateSellerView(RetrieveModelMixin, ListCreateAPIView):
     model = Seller
     queryset = Seller.objects.all()

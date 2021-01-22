@@ -1,7 +1,9 @@
 from tiki.views_seller import *
 from tiki.views_product import *
+from tiki.views_user import *
 from django.db import connection, transaction
 from django.http import JsonResponse
+
 from django.views.generic import TemplateView 
 import json
 # def save_data(request):
